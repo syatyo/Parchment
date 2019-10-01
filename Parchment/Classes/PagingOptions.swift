@@ -1,7 +1,7 @@
 import UIKit
 
 public struct PagingOptions {
-  
+
   /// The size for each of the menu items. _Default:
   /// .sizeToFit(minWidth: 150, height: 40)_
   public var menuItemSize: PagingMenuItemSize
@@ -134,7 +134,7 @@ public struct PagingOptions {
     menuItemSize = .sizeToFit(minWidth: 150, height: 40)
     menuTransition = .scrollAlongside
     menuInteraction = .scrolling
-    menuItemSources = [.class(type: PagingTitleCell.self)]
+    menuItemSources = [.class(type: PagingTitleCell.self, reuseIdentifier: nil)]
     menuInsets = UIEdgeInsets.zero
     menuItemSpacing = 0
     menuHorizontalAlignment = .left

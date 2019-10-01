@@ -337,6 +337,7 @@ open class PagingViewController:
     pagingController.collectionViewLayout = collectionViewLayout
     pagingController.dataSource = self
     pagingController.delegate = self
+    pagingController.pagingViewController = self
   }
   
   private func itemsForFiniteDataSource() -> [PagingItem] {

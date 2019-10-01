@@ -9,7 +9,8 @@ final class PagingController: NSObject {
   weak var dataSource: PagingMenuDataSource?
   weak var sizeDelegate: PagingControllerSizeDelegate?
   weak var delegate: PagingMenuDelegate?
-
+  weak var pagingViewController: PagingViewController?
+  
   weak var collectionView: CollectionView! {
     didSet {
       configureCollectionView()
@@ -348,11 +349,11 @@ final class PagingController: NSObject {
   private func configureMenuItemSources() {
     options.menuItemSources.forEach { menuItemSource in
         switch menuItemSource {
-            case .class(let type):
-              collectionView.register(type, forCellWithReuseIdentifier: PagingController.CellIdentifier)
+            case .class(let type, let reuseIdentifier):
+                collectionView.register(type, forCellWithReuseIdentifier: reuseIdentifier ?? PagingController.CellIdentifier)
               
-            case .nib(let nib):
-              collectionView.register(nib, forCellWithReuseIdentifier: PagingController.CellIdentifier)
+            case .nib(let nib, let reuseIdentifier):
+              collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier ?? PagingController.CellIdentifier)
         }
     }
   }
@@ -655,8 +656,14 @@ extension PagingController: UICollectionViewDataSource {
   // MARK: UICollectionViewDataSource
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let reuseIdentifier: String = {
+      guard let pagingViewController = self.pagingViewController else {
+        return PagingController.CellIdentifier
+      }
+      return pagingViewController.dataSource?.pagingViewController(pagingViewController, reuseIdentifierForPagingItemAt: indexPath.row) ?? PagingController.CellIdentifier
+    }()
     let cell = collectionView.dequeueReusableCell(
-      withReuseIdentifier: PagingController.CellIdentifier,
+      withReuseIdentifier: reuseIdentifier,
       for: indexPath) as! PagingCell
     let pagingItem = visibleItems.items[indexPath.item]
     var selected: Bool = false
