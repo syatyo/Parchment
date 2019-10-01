@@ -318,8 +318,8 @@ final class PagingController: NSObject {
     if options.menuInteraction != oldValue.menuInteraction {
       configureMenuInteraction()
     }
-    if options.menuItemSource != oldValue.menuItemSource {
-      configureMenuItemSource()
+    if options.menuItemSources != oldValue.menuItemSources {
+      configureMenuItemSources()
     }
     
     sizeCache.options = options
@@ -341,17 +341,19 @@ final class PagingController: NSObject {
       collectionView.contentInsetAdjustmentBehavior = .never
     }
     
-    configureMenuItemSource()
+    configureMenuItemSources()
     configureMenuInteraction()
   }
   
-  private func configureMenuItemSource() {
-    switch options.menuItemSource {
-    case .class(let type):
-      collectionView.register(type, forCellWithReuseIdentifier: PagingController.CellIdentifier)
-      
-    case .nib(let nib):
-      collectionView.register(nib, forCellWithReuseIdentifier: PagingController.CellIdentifier)
+  private func configureMenuItemSources() {
+    options.menuItemSources.forEach { menuItemSource in
+        switch menuItemSource {
+            case .class(let type):
+              collectionView.register(type, forCellWithReuseIdentifier: PagingController.CellIdentifier)
+              
+            case .nib(let nib):
+              collectionView.register(nib, forCellWithReuseIdentifier: PagingController.CellIdentifier)
+        }
     }
   }
   
