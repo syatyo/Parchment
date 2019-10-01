@@ -13,10 +13,22 @@ enum TabPagingItem: Int, PagingItem, Hashable, Comparable, CaseIterable {
     case done
     case todo
     case inProgress
+    case archive
+    case friend
     
     enum TabType {
         case icon(UIImage)
         case label(String)
+        
+        var reuseIdentifer: String {
+            switch self {
+            case .icon:
+                return "icon"
+                
+            case .label:
+                return "label"
+            }
+        }
     }
     
     var tabType: TabType {
@@ -29,7 +41,17 @@ enum TabPagingItem: Int, PagingItem, Hashable, Comparable, CaseIterable {
             
         case .inProgress:
             return .label("In Progress")
+            
+        case .archive:
+            return .label("Archive")
+            
+        case .friend:
+            return .label("Friend")
         }
+    }
+    
+    var reuseIdentifer: String {
+        return tabType.reuseIdentifer
     }
     
     static func < (lhs: TabPagingItem, rhs: TabPagingItem) -> Bool {
@@ -48,8 +70,8 @@ class ViewController: UIViewController {
     private func setupTabUI() {
         let pagingViewController = PagingViewController()
         pagingViewController.options.menuItemSources = [
-            .nib(nib: UINib(nibName: "IconPagingCell", bundle: nil)),
-            .nib(nib: UINib(nibName: "LabelPagingCell", bundle: nil))
+            .nib(nib: UINib(nibName: "IconPagingCell", bundle: nil), reuseIdentifier: "icon"),
+            .nib(nib: UINib(nibName: "LabelPagingCell", bundle: nil), reuseIdentifier: "label")
         ]
         pagingViewController.options.menuItemSize = .sizeToFit(minWidth: 40, height: 50)
         pagingViewController.options.textColor = UIColor(red: 0.51, green: 0.54, blue: 0.56, alpha: 1)
@@ -88,5 +110,8 @@ extension ViewController: PagingViewControllerDataSource {
         return TabPagingItem(rawValue: index)!
     }
     
+    func pagingViewController(_: PagingViewController, reuseIdentifierForPagingItemAt index: Int) -> String {
+        return TabPagingItem(rawValue: index)!.reuseIdentifer
+    }
     
 }
