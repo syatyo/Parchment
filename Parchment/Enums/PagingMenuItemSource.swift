@@ -9,7 +9,7 @@ extension PagingMenuItemSource: Equatable {
   public static func == (lhs: PagingMenuItemSource, rhs: PagingMenuItemSource) -> Bool {
     switch (lhs, rhs) {
     case let (.class(lhsType), .class(rhsType)):
-      return lhsType != rhsType
+      return lhsType == rhsType
       
     case let (.nib(lhsNib), .nib(rhsNib)):
       return lhsNib === rhsNib
