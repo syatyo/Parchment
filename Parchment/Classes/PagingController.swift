@@ -350,7 +350,7 @@ final class PagingController: NSObject {
     options.menuItemSources.forEach { menuItemSource in
         switch menuItemSource {
             case .class(let type, let reuseIdentifier):
-                collectionView.register(type, forCellWithReuseIdentifier: reuseIdentifier ?? PagingController.CellIdentifier)
+              collectionView.register(type, forCellWithReuseIdentifier: reuseIdentifier ?? PagingController.CellIdentifier)
               
             case .nib(let nib, let reuseIdentifier):
               collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier ?? PagingController.CellIdentifier)

@@ -39,5 +39,5 @@ public protocol PagingViewControllerDataSource: class {
   /// - Parameter pagingViewController: The `PagingViewController`
   /// instance
   /// - Returns: The `reuseIdentifier`
-  func pagingViewController(_: PagingViewController, reuseIdentifierForPagingItemAt index: Int) -> String
+  func pagingViewController(_: PagingViewController, reuseIdentifierForPagingItemAt index: Int) -> String?
 }

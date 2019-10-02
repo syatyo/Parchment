@@ -49,12 +49,13 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     let pagingViewController = PagingViewController()
-	  pagingViewController.options.menuItemSource = .class(type: IconPagingCell.self)
+    pagingViewController.dataSource = self
+    pagingViewController.options.menuItemSources = [.class(type: IconPagingCell.self, reuseIdentifier: "cell")]
+    pagingViewController.collectionView.register(IconPagingCell.self, forCellWithReuseIdentifier: "cell")
     pagingViewController.options.menuItemSize = .fixed(width: 60, height: 60)
     pagingViewController.options.textColor = UIColor(red: 0.51, green: 0.54, blue: 0.56, alpha: 1)
     pagingViewController.options.selectedTextColor = UIColor(red: 0.14, green: 0.77, blue: 0.85, alpha: 1)
     pagingViewController.options.indicatorColor = UIColor(red: 0.14, green: 0.77, blue: 0.85, alpha: 1)
-    pagingViewController.dataSource = self
     pagingViewController.select(pagingItem: IconItem(icon: icons[0], index: 0))
     
     // Add the paging view controller as a child view controller
@@ -68,6 +69,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: PagingViewControllerDataSource {
+  
+  func pagingViewController(_: PagingViewController, reuseIdentifierForPagingItemAt index: Int) -> String? {
+    return "cell"
+  }
   
   func pagingViewController(_: PagingViewController, viewControllerAt index: Int) -> UIViewController {
     return IconViewController(title: icons[index].capitalized)

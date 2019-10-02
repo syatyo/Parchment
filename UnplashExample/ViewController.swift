@@ -144,7 +144,8 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    pagingViewController.options.menuItemSource = .class(type: ImagePagingCell.self)
+    pagingViewController.options.menuItemSources
+      = [.class(type: ImagePagingCell.self, reuseIdentifier: "ImagePagingCell")]
     pagingViewController.options.menuItemSize = .fixed(width: menuItemSize.width, height: menuItemSize.height)
     pagingViewController.options.menuItemSpacing = 8
     pagingViewController.options.menuInsets = menuInsets
@@ -209,6 +210,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: PagingViewControllerDataSource {
+  
+  func pagingViewController(_: PagingViewController, reuseIdentifierForPagingItemAt index: Int) -> String? {
+    return "ImagePagingCell"
+  }
   
   func pagingViewController(_: PagingViewController, viewControllerAt index: Int) -> UIViewController {
     let viewController = ImagesViewController(

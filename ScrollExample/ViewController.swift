@@ -60,6 +60,7 @@ class ViewController: UIViewController {
     // Set our data source and delegate.
     pagingViewController.dataSource = self
     pagingViewController.delegate = self
+    pagingViewController.options.menuItemSources = [.class(type: PagingTitleCell.self, reuseIdentifier: "cell")]
   }
   
   /// Calculate the menu offset based on the content offset of the
@@ -70,6 +71,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: PagingViewControllerDataSource {
+    
+  func pagingViewController(_: PagingViewController, reuseIdentifierForPagingItemAt index: Int) -> String? {
+    return "cell"
+  }
   
   func pagingViewController(_: PagingViewController, viewControllerAt index: Int) -> UIViewController {
     let viewController = TableViewController()

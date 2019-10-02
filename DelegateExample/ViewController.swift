@@ -41,6 +41,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: PagingViewControllerDataSource {
+    
+  func pagingViewController(_: PagingViewController, reuseIdentifierForPagingItemAt index: Int) -> String? {
+    return nil
+  }
   
   func pagingViewController(_: PagingViewController, pagingItemAt index: Int) -> PagingItem {
     return PagingTitleItem(title: cities[index], index: index)

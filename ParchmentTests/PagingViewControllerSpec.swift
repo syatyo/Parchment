@@ -47,6 +47,7 @@ class DeinitPagingViewController: PagingViewController {
 }
 
 class ReloadingDataSource: PagingViewControllerDataSource {
+      
   var items: [PagingTitleItem] = []
   var viewControllers: [UIViewController] = []
   
@@ -61,6 +62,11 @@ class ReloadingDataSource: PagingViewControllerDataSource {
   func pagingViewController(_: PagingViewController, pagingItemAt index: Int) -> PagingItem {
     return items[index]
   }
+  
+  func pagingViewController(_: PagingViewController, reuseIdentifierForPagingItemAt index: Int) -> String? {
+    return nil
+  }
+
 }
 
 class PagingViewControllerSpec: QuickSpec {

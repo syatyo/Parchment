@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,15 +18,17 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fmc-vE-cP3">
-                        <rect key="frame" x="0.0" y="0.0" width="135" height="97"/>
+                        <rect key="frame" x="52.5" y="33.5" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="600-cz-Grg"/>
+                            <constraint firstAttribute="width" constant="30" id="Qhs-f1-Yfy"/>
+                        </constraints>
                     </imageView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Fmc-vE-cP3" secondAttribute="bottom" id="D52-DX-jII"/>
-                <constraint firstItem="Fmc-vE-cP3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lVA-4e-LHC"/>
-                <constraint firstAttribute="trailing" secondItem="Fmc-vE-cP3" secondAttribute="trailing" id="ps3-zV-xqr"/>
-                <constraint firstItem="Fmc-vE-cP3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zIl-kY-gkD"/>
+                <constraint firstItem="Fmc-vE-cP3" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="kJQ-Rz-aPd"/>
+                <constraint firstItem="Fmc-vE-cP3" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="zYk-q8-h92"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="135" height="97"/>

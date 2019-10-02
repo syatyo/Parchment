@@ -83,6 +83,7 @@ class ViewController: UIViewController {
       spacing: .zero,
       insets: .zero
     )
+    pagingViewController.options.menuItemSources = [.class(type: PagingTitleCell.self, reuseIdentifier: "cell")]
     
     // Contrain the paging view to all edges.
     pagingViewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -101,6 +102,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: PagingViewControllerDataSource {
+    
+  func pagingViewController(_: PagingViewController, reuseIdentifierForPagingItemAt index: Int) -> String? {
+    return "cell"
+  }
   
   func pagingViewController(_: PagingViewController, viewControllerAt index: Int) -> UIViewController {
     let viewController = TableViewController()

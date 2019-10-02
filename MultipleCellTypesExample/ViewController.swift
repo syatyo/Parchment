@@ -78,6 +78,7 @@ class ViewController: UIViewController {
         pagingViewController.options.selectedTextColor = UIColor(red: 0.14, green: 0.77, blue: 0.85, alpha: 1)
         pagingViewController.options.indicatorColor = UIColor(red: 0.14, green: 0.77, blue: 0.85, alpha: 1)
         pagingViewController.dataSource = self
+        pagingViewController.sizeDelegate = self
         pagingViewController.select(index: 0)
         
         // Add the paging view controller as a child view controller
@@ -110,8 +111,30 @@ extension ViewController: PagingViewControllerDataSource {
         return TabPagingItem(rawValue: index)!
     }
     
-    func pagingViewController(_: PagingViewController, reuseIdentifierForPagingItemAt index: Int) -> String {
+    func pagingViewController(_: PagingViewController, reuseIdentifierForPagingItemAt index: Int) -> String? {
         return TabPagingItem(rawValue: index)!.reuseIdentifer
+    }
+    
+}
+
+extension ViewController: PagingViewControllerSizeDelegate {
+    
+    func pagingViewController(_: PagingViewController, widthForPagingItem pagingItem: PagingItem, isSelected: Bool) -> CGFloat {
+        
+        guard let tabItem = pagingItem as? TabPagingItem else {
+            return 0
+        }
+        
+        let margin: CGFloat = 15
+        let width: CGFloat
+        switch tabItem.tabType {
+        case .icon:
+            width = 30
+            
+        case .label(let text):
+            width = (text as NSString).size(withAttributes: [.font: UIFont.systemFont(ofSize: 17)]).width
+        }
+        return margin + width + margin
     }
     
 }

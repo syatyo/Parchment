@@ -65,7 +65,8 @@ class ViewController: UIViewController {
         pagingViewController.options.selectedTextColor = UIColor.white
         pagingViewController.options.borderOptions = .hidden
         pagingViewController.options.indicatorColor = UIColor(red: 10/255, green: 0, blue: 105/255, alpha: 1)
-        
+        pagingViewController.options.menuItemSources = [.class(type: PagingTitleCell.self, reuseIdentifier: "cell")]
+      
         // Add the "hidden" scroll view to the root of the UIViewController.
         view.addSubview(hiddenScrollView)
         hiddenScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -131,6 +132,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: PagingViewControllerDataSource {
+  
+  func pagingViewController(_: PagingViewController, reuseIdentifierForPagingItemAt index: Int) -> String? {
+    return "cell"
+  }
     
   func pagingViewController(_: PagingViewController, viewControllerAt index: Int) -> UIViewController {
         let viewController = TableViewController(style: .plain)
