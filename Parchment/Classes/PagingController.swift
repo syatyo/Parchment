@@ -48,7 +48,6 @@ final class PagingController: NSObject {
   
   private var swipeGestureRecognizerLeft: UISwipeGestureRecognizer?
   private var swipeGestureRecognizerRight: UISwipeGestureRecognizer?
-  private static let CellIdentifier = "PagingController-CellIdentifier"
   
   init(options: PagingOptions) {
     self.options = options
