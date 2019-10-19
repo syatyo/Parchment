@@ -144,6 +144,9 @@ open class PagingViewController:
     super.init(nibName: nil, bundle: nil)
     collectionView.delegate = self
     configurePagingController()
+    
+    // Register default cell
+    register(PagingTitleCell.self, forCellWithPagingItemType: PagingTitleItem.self)
   }
   
   public convenience init(viewControllers: [UIViewController]) {
