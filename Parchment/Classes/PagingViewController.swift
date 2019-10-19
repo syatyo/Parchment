@@ -146,7 +146,7 @@ open class PagingViewController:
     configurePagingController()
     
     // Register default cell
-    register(PagingTitleCell.self, forCellWithPagingItemType: PagingTitleItem.self)
+    register(PagingTitleCell.self, for: PagingTitleItem.self)
   }
   
   public convenience init(viewControllers: [UIViewController]) {
@@ -336,14 +336,14 @@ open class PagingViewController:
   /// Register cell class for paging cell
   /// - Parameter cellClass: paging cell's class
   /// - Parameter pagingItemType: paging item type for specifying cell identifier
-  public func register(_ cellClass: AnyClass?, forCellWithPagingItemType pagingItemType: PagingItem.Type) {
+  public func register(_ cellClass: AnyClass?, for pagingItemType: PagingItem.Type) {
     collectionView.register(cellClass, forCellWithReuseIdentifier: String(describing: pagingItemType))
   }
   
   /// Register nib for paging cell
   /// - Parameter nib: paging cell's nib
   /// - Parameter pagingItemType: paging item type for specifying cell identifier
-  public func register(_ nib: UINib?, forCellWithPagingItemType pagingItemType: PagingItem.Type) {
+  public func register(_ nib: UINib?, for pagingItemType: PagingItem.Type) {
     collectionView.register(nib, forCellWithReuseIdentifier: String(describing: pagingItemType))
   }
   
