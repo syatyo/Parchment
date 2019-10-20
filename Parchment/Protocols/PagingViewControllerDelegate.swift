@@ -66,6 +66,14 @@ public protocol PagingViewControllerDelegate: class {
     _ pagingViewController: PagingViewController<T>,
     widthForPagingItem pagingItem: T,
     isSelected: Bool) -> CGFloat?
+  
+  /// Called when paging cell is selected
+  /// - Parameter pagingViewController: The `PagingViewController` instance
+  /// - Parameter index: The index for selected paging cell
+  func pagingViewController<T>(
+    _ pagingViewController: PagingViewController<T>,
+    didSelectPagingCellAt index: Int)
+  
 }
 
 public extension PagingViewControllerDelegate {
@@ -103,4 +111,11 @@ public extension PagingViewControllerDelegate {
     isSelected: Bool) -> CGFloat? {
     return nil
   }
+  
+  func pagingViewController<T>(
+    _ pagingViewController: PagingViewController<T>,
+    didSelectPagingCellAt index: Int) {
+    return
+  }
+  
 }
