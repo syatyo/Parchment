@@ -997,7 +997,10 @@ open class PagingViewController<T: PagingItem>:
       pagingItem: selectedPagingItem,
       direction: direction,
       animated: true))
-    delegate?.pagingViewController(self, didSelectPagingCellAt: indexPath.item)
+    delegate?.pagingViewController(self,
+                                   didSelectPagingCellAt: indexPath.item,
+                                   selectedItem: selectedPagingItem,
+                                   currentItem: currentPagingItem)
   }
   
   open func collectionView(_ collectionView: UICollectionView, targetContentOffsetForProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
