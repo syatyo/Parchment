@@ -340,6 +340,7 @@ class PagingViewControllerSpec: QuickSpec {
         
         beforeEach {
           viewController = PagingViewController()
+          viewController.register(PagingTitleCell.self, for: Item.self)
           viewController.options.menuItemSize = .fixed(width: 100, height: 50)
           viewController.infiniteDataSource = dataSource
           

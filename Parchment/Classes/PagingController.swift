@@ -48,7 +48,6 @@ final class PagingController: NSObject {
   
   private var swipeGestureRecognizerLeft: UISwipeGestureRecognizer?
   private var swipeGestureRecognizerRight: UISwipeGestureRecognizer?
-  private static let CellIdentifier = "PagingController-CellIdentifier"
   
   init(options: PagingOptions) {
     self.options = options
@@ -318,9 +317,6 @@ final class PagingController: NSObject {
     if options.menuInteraction != oldValue.menuInteraction {
       configureMenuInteraction()
     }
-    if options.menuItemSource != oldValue.menuItemSource {
-      configureMenuItemSource()
-    }
     
     sizeCache.options = options
   }
@@ -341,18 +337,7 @@ final class PagingController: NSObject {
       collectionView.contentInsetAdjustmentBehavior = .never
     }
     
-    configureMenuItemSource()
     configureMenuInteraction()
-  }
-  
-  private func configureMenuItemSource() {
-    switch options.menuItemSource {
-    case .class(let type):
-      collectionView.register(type, forCellWithReuseIdentifier: PagingController.CellIdentifier)
-      
-    case .nib(let nib):
-      collectionView.register(nib, forCellWithReuseIdentifier: PagingController.CellIdentifier)
-    }
   }
   
   private func configureMenuInteraction() {
@@ -653,10 +638,10 @@ extension PagingController: UICollectionViewDataSource {
   // MARK: UICollectionViewDataSource
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(
-      withReuseIdentifier: PagingController.CellIdentifier,
-      for: indexPath) as! PagingCell
     let pagingItem = visibleItems.items[indexPath.item]
+    let cell = collectionView.dequeueReusableCell(
+      withReuseIdentifier: String(describing: type(of: pagingItem)),
+      for: indexPath) as! PagingCell
     var selected: Bool = false
     if let currentPagingItem = state.currentPagingItem {
       selected = currentPagingItem.isEqual(to: pagingItem)

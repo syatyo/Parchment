@@ -5,11 +5,7 @@ public struct PagingOptions {
   /// The size for each of the menu items. _Default:
   /// .sizeToFit(minWidth: 150, height: 40)_
   public var menuItemSize: PagingMenuItemSize
-  
-  /// The class type for the menu item. Override this if you want
-  /// your own custom menu items. _Default: PagingTitleCell.self_
-  public var menuItemSource: PagingMenuItemSource
-  
+    
   /// Determine the spacing between the menu items. _Default: 0_
   public var menuItemSpacing: CGFloat
   
@@ -134,7 +130,6 @@ public struct PagingOptions {
     menuItemSize = .sizeToFit(minWidth: 150, height: 40)
     menuTransition = .scrollAlongside
     menuInteraction = .scrolling
-    menuItemSource = .class(type: PagingTitleCell.self)
     menuInsets = UIEdgeInsets.zero
     menuItemSpacing = 0
     menuHorizontalAlignment = .left

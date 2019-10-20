@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
 
     let pagingViewController = PagingViewController()
-    pagingViewController.options.menuItemSource = .class(type: CalendarPagingCell.self)
+    pagingViewController.register(CalendarPagingCell.self, for: CalendarItem.self)
     pagingViewController.options.menuItemSize = .fixed(width: 48, height: 58)
     pagingViewController.options.textColor = UIColor(red: 95/255, green: 102/255, blue: 108/255, alpha: 1)
     pagingViewController.options.selectedTextColor = UIColor(red: 117/255, green: 111/255, blue: 216/255, alpha: 1)
